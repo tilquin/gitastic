@@ -1,0 +1,2 @@
+# remove all merged branches except for master, staging, and develop. removed on remote too
+git branch --merged | grep -v "\*" | grep -v 'master' | grep -v 'staging' | grep -v 'develop' | xargs -I {} sh -c "git branch -d {} && git push origin :{}"

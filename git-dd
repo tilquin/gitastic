@@ -1,0 +1,1 @@
+tmux resize-pane -Z; git diff develop; tmux resize-pane -Z
