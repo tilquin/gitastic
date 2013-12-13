@@ -1,1 +1,8 @@
-git merge --no-ff $1 && git push && git branch -d $1 && git push origin :$1
+arg=$1
+if [ $# == 0 ]
+then
+arg=`git rev-parse --abbrev-ref HEAD`
+git checkout develop
+fi
+
+git merge --no-ff $arg && git push && git branch -d $arg && git push origin :$arg
