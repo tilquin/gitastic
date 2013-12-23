@@ -1,8 +1,8 @@
 arg=$1
-if [ $# == 0 ]
+if [ -z $arg ]
 then
-arg=`git rev-parse --abbrev-ref HEAD`
-git checkout develop
+    arg=`git rev-parse --abbrev-ref HEAD`
+    git checkout develop
 fi
 
-git merge --no-ff $arg && git push && git branch -d $arg && git push origin :$arg
+git merge --no-ff $arg && git push origin develop && git branch -d $arg && git push origin :$arg
