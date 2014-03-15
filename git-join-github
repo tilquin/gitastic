@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+if [[ $# != 2 ]]
+then
+    echo "Usage: git join-github <user name> <key name>"
+    exit 1
+fi
+
+keyfile=~/.ssh/id_rsa.pub
+if [[ ! -e $keyfile ]]
+then
+    echo "No public key file."
+    exit 1
+fi
+
+key=`cat $keyfile`
+curl -u $1 https://api.github.com/user/keys -d "{ \"title\": \"$2\", \"key\": \"$key\" }" -XPOST -H "content-type: application/json"
